@@ -1,0 +1,73 @@
+version: '3.8'
+
+networks:
+  daily-save-money:
+    name: daily-save-money
+
+services:
+  reverse-proxy:
+    image: traefik:latest
+    container_name: traefik
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - $PWD/.traefik/config/traefik.toml:/etc/traefik/traefik.toml
+      - $PWD/.traefik/config/certs.yaml:/etc/traefik/dynamic/certs-traefik.yaml
+      - $PWD/.traefik/certs:/etc/certs
+    restart: always
+    networks:
+      - daily-save-money
+
+  auth-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE: auth
+    environment:
+      - NODE_ENV=${NODE_ENV:-development}
+    depends_on:
+      - nats
+    networks:
+      - daily-save-money
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.auth-service.entrypoints=https"
+      - "traefik.http.routers.auth-service.tls=true"
+
+  user-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE: user
+    environment:
+      - NODE_ENV=${NODE_ENV:-development}
+      - DB_HOST=mongo
+      - DB_NAME=user
+      - DB_USER=
+      - DB_PASSWORD
+    depends_on:
+      - nats
+      - mongo
+    networks:
+      - daily-save-money
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.user-service.entrypoints=https"
+      - "traefik.http.routers.user-service.tls=true"
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    networks:
+      - daily-save-money
+
+  nats:
+    image: nats:latest
+    container_name: nats
+    networks:
+      - daily-save-money

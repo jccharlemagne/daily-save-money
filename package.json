@@ -1,0 +1,19 @@
+{
+  "name": "@jccharlemagne/daily-save-money",
+  "version": "1.0.0",
+  "description": "Daily save money",
+  "repository": "git@github.com:jccharlemagne/daily-save-money.git",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "build": "lerna run builf"
+  },
+  "devDependencies": {
+    "lerna": "^7.4.1",
+    "tsc-watch": "^6.0.4",
+    "typescript": "^5.2.2"
+  },
+  "workspaces": {
+    "packages": ["packages/*", "services/*"]
+  }
+}

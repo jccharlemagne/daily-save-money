@@ -1,0 +1,24 @@
+{
+  "name": "@jccharlemagne/crypto",
+  "version": "1.0.0",
+  "description": "Crypto library",
+  "license": "UNLICENSED",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jccharlemagne/daily-save-money.git"
+  },
+  "scripts": {
+    "build": "tsc -b tsconfig.production.json",
+    "lint": "eslint .",
+    "lint:fix": "yarn run lint --fix"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3"
+  },
+  "devDependencies": {
+    "@jccharlemagne/eslint-config": "^1.0.0",
+    "@jccharlemagne/prettier-config": "^1.0.0",
+    "@types/bcryptjs": "^2.4.5"
+  }
+}

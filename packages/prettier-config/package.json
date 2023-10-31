@@ -1,0 +1,15 @@
+{
+  "name": "@jccharlemagne/prettier-config",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Prettier config",
+  "license": "UNLICENSED",
+  "main": "./prettier-config.json",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jccharlemagne/daily-save-money.git"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.3"
+  }
+}

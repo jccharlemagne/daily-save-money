@@ -1,0 +1,10 @@
+{
+  "root": true,
+  "extends": ["@jccharlemagne/eslint-config"],
+  "parserOptions": {
+    "project": "./tsconfig.eslint.json"
+  },
+  "rules": {
+    "@typescript-eslint/no-misused-promises": "off"
+  }
+}

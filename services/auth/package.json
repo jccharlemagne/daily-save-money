@@ -1,0 +1,33 @@
+{
+  "name": "@jccharlemagne/auth",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Auth service",
+  "license": "UNLICENSED",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jccharlemagne/daily-save-money.git"
+  },
+  "scripts": {
+    "build": "tsc -b tsconfig.production.json",
+    "dev": "nodemon ./src/index.ts",
+    "start": "node ./dist/index.js"
+  },
+  "dependencies": {
+    "@jccharlemagne/crypto": "^1.0.0",
+    "@jccharlemagne/jwt": "^1.0.0",
+    "@jccharlemagne/nats": "^1.0.0",
+    "@jccharlemagne/server": "^1.0.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "google-auth-library": "^9.2.0",
+    "nats": "^2.17.0"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.20",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1"
+  }
+}

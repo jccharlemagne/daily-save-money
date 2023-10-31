@@ -128,3 +128,12 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# docker
+docker-compose.override.yaml
+
+# IDE
+.idea
+
+# Max
+.DS_Store

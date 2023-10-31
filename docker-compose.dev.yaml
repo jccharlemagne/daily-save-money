@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  auth-service:
+    build:
+      target: builder
+    volumes:
+      - '/usr/src/app/services/auth/node_modules'
+      - './services/auth:/usr/src/app/services/auth'
+      - './packages:/usr/src/app/packages'
+    environment:
+      - GOOGLE_CLIENT_ID=687572324315-gcncusrq5p692d4tgd8jl0kdsn5ahfq2.apps.googleusercontent.com
+      - NATS_HOST=nats://nats:4222
+      - CORS_ORIGIN=*
+    command: yarn workspace @jccharlemagne/auth dev
+    labels:
+      - "traefik.http.routers.auth-service.rule=Host(`auth-dev.daily-save-money.lan`)"
+
+  user-service:
+    build:
+      target: builder
+    volumes:
+      - '/usr/src/app/services/user/node_modules'
+      - './services/user:/usr/src/app/services/user'
+      - './packages:/usr/src/app/packages'
+    environment:
+      - NATS_HOST=nats://nats:4222
+    command: yarn workspace @jccharlemagne/user dev
+    labels:
+      - "traefik.http.routers.user-service.rule=Host(`user-dev.daily-save-money.lan`)"

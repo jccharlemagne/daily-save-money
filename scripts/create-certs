@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# usage: ./create-es-keypair .env
+
+createCerts()
+{
+  openssl req -x509 -new -keyout ./.traefik/certs/root.key -out ./.traefik/certs/root.cer -config ./scripts/certs/root.cnf
+  openssl req -nodes -new -keyout ./.traefik/certs/server.key -out ./.traefik/certs/server.csr -config ./scripts/certs/server.cnf
+  openssl x509 -days 825 -req -in ./.traefik/certs/server.csr -CA ./.traefik/certs/root.cer -CAkey ./.traefik/certs/root.key -set_serial 123 -out ./.traefik/certs/server.cer -extfile ./scripts/certs/server.cnf -extensions x509_ext
+}
+
+rm -f .trafik/certs/*
+createCerts

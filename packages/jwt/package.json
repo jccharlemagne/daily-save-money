@@ -1,0 +1,23 @@
+{
+  "name": "@jccharlemagne/jwt",
+  "version": "1.0.0",
+  "private": true,
+  "description": "JWT library",
+  "license": "UNLICENSED",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jccharlemagne/daily-save-money.git"
+  },
+  "scripts": {
+    "build": "tsc -b tsconfig.production.json",
+    "lint": "eslint .",
+    "lint:fix": "yarn run lint --fix"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.4"
+  }
+}
